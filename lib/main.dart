@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Starter Template',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: Colors.lightGreen,
       ),
       home: Home(),
     );

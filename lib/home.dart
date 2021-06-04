@@ -11,107 +11,79 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                children: <Widget>[
-                  const RowWidget(), // as the widget won't state, no need to rebuild it
-                  Padding(padding: EdgeInsets.all(16.0)),
-                  const RowAndColumnWidget()
-                ],
-              )),
-        ),
-      ),
+      appBar: AppBar(
+          title: Text('Home'),
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {},
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
+            IconButton(icon: Icon(Icons.more_vert), onPressed: () {})
+          ],
+          flexibleSpace: SafeArea(
+            child: Icon(Icons.photo_camera, size: 75.0, color: Colors.white70),
+          ),
+          bottom: PreferredSize(
+            child: Container(
+                color: Colors.lightGreen.shade100,
+                height: 75.0,
+                width: double.infinity,
+                child: Center(
+                  child: Text('Bottom'),
+                )),
+            preferredSize: Size.fromHeight(75.0),
+          )),
+      body: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    children: <Widget>[
+                      const ContainerWithBoxDecorationWidget(),
+                    ],
+                  )),
+            ),
+          )),
     );
   }
 }
 
-class RowAndColumnWidget extends StatelessWidget {
-  const RowAndColumnWidget({
+class ContainerWithBoxDecorationWidget extends StatelessWidget {
+  const ContainerWithBoxDecorationWidget({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: <Widget>[
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Container(
-            color: Colors.yellow,
-            height: 60.0,
-            width: 60.0,
-          ),
-          Padding(padding: EdgeInsets.all(16.0)),
-          Container(
-            color: Colors.amber,
-            height: 40.0,
-            width: 40.0,
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-          ),
-          Container(
-            color: Colors.brown,
-            height: 20.0,
-            width: 20.0,
-          ),
-          Divider(),
-          Row(
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.lightGreen,
-                radius: 100.0,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                        height: 100.0, width: 100.0, color: Colors.yellow),
-                    Container(height: 60.0, width: 60.0, color: Colors.amber),
-                    Container(height: 40.0, width: 40.0, color: Colors.brown),
-                  ],
-                ),
-              )
+    return Column(children: <Widget>[
+      Container(
+          height: 100.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(100.0),
+                bottomRight: Radius.circular(10.0)),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.white,
+                Colors.lightGreen.shade500,
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0, 10.0))
             ],
           ),
-          Divider(),
-          Text('End of the Line'),
-        ],
-      )
+          child: Center(child: Text('Container'))),
     ]);
-  }
-}
-
-class RowWidget extends StatelessWidget {
-  const RowWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Container(
-          color: Colors.yellow,
-          height: 40.0,
-          width: 40.0,
-        ),
-        Padding(padding: EdgeInsets.all(16.0)),
-        Expanded(
-          child: Container(
-            color: Colors.amber,
-            height: 40.0,
-            width: 40.0,
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.all(16.0),
-        ),
-        Container(color: Colors.brown, height: 40.0, width: 40.0)
-      ],
-    );
   }
 }
