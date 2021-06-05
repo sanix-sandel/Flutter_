@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/animated_container.dart';
+import 'package:flutter_widgets/animated_cross_fade.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class _HomeState extends State<Home> {
       child: Column(
         children: <Widget>[
           AnimatedContainerWidget(),
+          Divider(),
+          AnimatedCrossFadeWidget(),
         ],
       ),
     ));
